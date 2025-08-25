@@ -4,7 +4,7 @@
 
 ## ✅ 部署步骤
 
-### 1. 推送到 GitHub 或者  [![Fork本项目](https://img.shields.io/badge/Fork-本项目-blue?logo=github){target="_blank"}]
+### 1. 推送到 GitHub 或者  [![Fork本项目](https://img.shields.io/github/forks/vitter/moontv-heroku?label=Fork&style=social)]
 将以下文件上传到 GitHub 仓库：
 - `Dockerfile`
 - `heroku.yml`
@@ -36,5 +36,5 @@ HEROKU_APP_NAME：你的 Heroku 应用名
 .github/workflows/version-sync.yml 这个GitHub Actions 定时任务（cron）+ curl + git 提交更新LunaTV的最新版本文件。
 这样当每次 LunaTV 发布新版本，你的项目也会自动跟进，然后就会触发上面的Heroku自动部署。
 
-**项目主页**: https://github.com/vitter/imoontv-heroku  
+**项目主页**: https://github.com/vitter/moontv-heroku  
 **问题反馈**: https://github.com/vitter/moontv-heroku/issues
