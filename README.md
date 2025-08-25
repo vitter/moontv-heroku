@@ -17,12 +17,12 @@
 - 创建应用
 - **Deploy → Deployment method → 选择 GitHub**
 - 搜索并连接你的 GitHub 仓库
-- 启用 **Automatic Deploys** 或点击 **Deploy Branch**
+- 启用 **Automatic Deploys** 后点击 **Deploy Branch**
 
 ### 3. 配置环境变量
 Heroku 会自动从 `heroku.yml` 中读取 `setup.config`，（本yml配置采用Upstash 存储，需要提前在 [upstash](https://upstash.com/)  注册账号并新建个 Redis 实例。复制数据库的 HTTPS ENDPOINT 和 TOKEN到配置文件）并写入到 Config Vars。（测试的时候好像有点问题，如果log里提示环境变量找不到请手动修改。）
 
-如果需要修改，可以到 **Heroku → Settings → Config Vars** 页面调整。
+目前看配置环境变量需要修改，到 **Heroku → Settings → Config Vars** 页面进行添加修改。
 
 ### 4. 启动应用
 部署完成后，点击 **Open App** 打开应用。
