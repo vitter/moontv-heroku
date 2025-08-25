@@ -1,0 +1,14 @@
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: node start.js
+
+setup:
+  config:
+    USERNAME: "admin"
+    PASSWORD: "admin_password"
+    NEXT_PUBLIC_STORAGE_TYPE: "upstash"
+    UPSTASH_URL: "<你的 Upstash HTTPS endpoint>"
+    UPSTASH_TOKEN: "<你的 Upstash token>"

@@ -1,0 +1,57 @@
+name: Sync VERSION.txt
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # 每小时执行一次
+  workflow_dispatch:
+
+jobs:
+  sync-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 允许推送更改
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get remote VERSION.txt
+        run: |
+          curl -sSL https://raw.githubusercontent.com/MoonTechLab/LunaTV/refs/heads/main/VERSION.txt -o remote_VERSION.txt
+
+      - name: Compare versions
+        id: compare
+        run: |
+          OLD_VERSION="none"
+          if [ -f VERSION.txt ]; then
+            OLD_VERSION=$(cat VERSION.txt)
+          fi
+          NEW_VERSION=$(cat remote_VERSION.txt)
+          
+          UPDATE_NEEDED=false
+          if [ "$OLD_VERSION" != "$NEW_VERSION" ]; then
+            UPDATE_NEEDED=true
+          fi
+
+          echo "update_needed=$UPDATE_NEEDED" >> $GITHUB_OUTPUT
+          echo "old_version=$OLD_VERSION" >> $GITHUB_OUTPUT
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update VERSION.txt
+        if: steps.compare.outputs.update_needed == 'true'
+        run: |
+          mv remote_VERSION.txt VERSION.txt
+          echo "Updated VERSION.txt"
+
+      - name: Commit and Push changes
+        if: steps.compare.outputs.update_needed == 'true'
+        run: |
+          OLD=${{ steps.compare.outputs.old_version }}
+          NEW=${{ steps.compare.outputs.new_version }}
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION.txt
+          git commit -m "Sync VERSION.txt: ${OLD} → ${NEW}"
+          git push
