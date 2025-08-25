@@ -4,7 +4,7 @@
 
 ## ✅ 部署步骤
 
-### 1. 推送到 GitHub 或者  [![Fork本项目](https://img.shields.io/github/forks/vitter/Fork.svg?style=social&label=Fork)](https://github.com/vitter/moontv-heroku/fork) 
+### 1. 推送到 GitHub 或者  [![Fork本项目](https://img.shields.io/github/forks/vitter/moontv-heroku?label=Fork&style=social)](https://github.com/vitter/moontv-heroku/fork) 
 
 将以下文件上传到 GitHub 仓库：
 - `Dockerfile`
